@@ -73,3 +73,10 @@ python runserver.py
 | `/api/course/course/<int:student_id>`     | _GET_  | Get all course by student id  | `Bearer Access-Token` | student           |
 | `/api/course/course/<string:course_name>` | _GET_  | Get all course by course name | `Bearer Access-Token` | course teacher    |
 
+<!-- License -->
+## License
+
+Distributed under the MIT License. See <a href="https://github.com/Ze-Austin/ze-school/blob/main/LICENSE">LICENSE</a> for more information.
+
+
+---
