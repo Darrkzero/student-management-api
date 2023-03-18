@@ -1,7 +1,8 @@
 
 # Student Management API
 
-<p style="font-size:20px;">The Student Management API is a REST API that allows teachers to grade their students, allows students to register their courses, allows admin calculate the students gpa and many other functions. It's built with Flask and Flask-restx and can be accessed through https://darrkzero.pythonanywhere.com/ , a PythonAnywhere-powered web app</p>
+<p style="font-size:20px;">The Student Management API is a REST API that allows teachers to grade their students, allows students to register their courses, allows admin calculate the students gpa and many other functions. 
+It's built with Flask and Flask-restx and can be accessed through https://darrkzero.pythonanywhere.com/, a PythonAnywhere-powered web app</p>
 
 <div></div>
 
@@ -32,50 +33,43 @@ pip install -r requirements.txt
 python runserver.py
 ```
 
-<p style="font-size: 20px; margin-top: 20px;">To start operations with the database and navigate through some API endpoints ... the user to the endpoints will have to be authorized by making use of the model of login and signup and its authentication.</p>
+<p style="font-size: 20px; margin-top: 20px;">To start operations with the database and navigate through some API endpoints ... the user to the endpoints will have to be authorized by making use of the model of login and signup and its authentication.there are also different authorizations for teachers and students.</p>
 
 
 
-<div style="font-size:15px; margin-top:10px; margin-bottom:20px;">
-    The action code above will help admin in creating student account with the following credentials of: email, name and password.
-</div>
 
 # EndPoints For Student Management API
 
 <div style="margin-top:8px; margin-bottom:10px; font-size:20px; font-weight:bold;">Auth EndPoint</div>
 <!-- Tables for routing in each models -->
 
-| ROUTE                    | METHOD | DESCRIPTION                                     | AUTHORIZATION          | USER TYPE |
-| ------------------------ | ------ | ----------------------------------------------- | ---------------------- | --------- |
-| `/api/auth/signup`       | _POST_ | Creation of students account                    | `None`                 | Any       |
-| `/api/auth/login`        | _POST_ | Creation of JWT Tokens for students             | `None`                 | Students  |
-| `/api/auth/refresh`      | _POST_ | Creation of Refresh Tokens for students account | `Bearer Refresh-Token` | Students  |
-| `/api/auth/getme`        | _GET_  | Get Student Info                                | `Bearer Access-Token`  | Students  |
-| `/api/auth/logout`       | _POST_ | LogOut User                                     | `Bearer Access-Token`  | Any       |
-| `/api/auth/admin/signup` | _POST_ | Creation of Admin account                       | `None`                 | Admin     |
-| `/api/auth/admin/login`  | _POST_ | Creation of JWT Tokens for Admin                | `None`                 | Admin     |
+| ROUTE                     | METHOD | DESCRIPTION                                     | AUTHORIZATION          | USER TYPE         |
+| ------------------------  | ------ | ----------------------------------------------- | ---------------------- | ---------         |
+| `/api/auth/signup/user`   | _POST_ | Creation of teachers or admin account           | `None`                 | teachers or admin |
+| `/api/auth/signup/student`| _POST_ | Creation of students account                    | `None`                 | students          |
+| `/api/auth/login/user`    | _POST_ | Creation of JWT Tokens for teachers or admin    | `None`                 | teachers or admin |
+| `/api/auth/login/student` | _POST_ | Creation of JWT Tokens for students             | `None`                 | Students          |
+| `/api/auth/refresh`       | _POST_ | Creation of Refresh Tokens for all account      | `Bearer Refresh-Token` | Any               |
+| `/api/auth/reset_password`| _PATCH_| Change password                                 | `Bearer Refresh-Token` | Any               |
 
-<div style="margin-top:20px; margin-bottom:10px; font-size:20px; font-weight:bold;">Admin EndPoint</div>
-
-| ROUTE                                             | METHOD   | DESCRIPTION                           | AUTHORIZATION         | USER TYPE |
-| ------------------------------------------------- | -------- | ------------------------------------- | --------------------- | --------- |
-| `/api/admin/delete/<int:id>`                      | _DELETE_ | Delete Student by id                  | `Bearer Access-Token` | Admin     |
-| `/api/admin/student/<int:student_id>/course`      | _DELETE_ | Delete Course for a Student By Admin  | `Bearer Access-Token` | Admin     |
-| `/api/admin/course/<string:course_name>/students` | _GET_    | Get student registered in each course | `Bearer Access-Token` | Admin     |
-| `/api/getallstudent`                              | _GET_    | Get all students                      | `Bearer Access-Token` | Admin     |
 
 <div style="margin-top:20px; margin-bottom:10px; font-size:20px; font-weight:bold;">Student EndPoint</div>
 
-| ROUTE                                                    | METHOD | DESCRIPTION                           | AUTHORIZATION         | USER TYPE |
-| -------------------------------------------------------- | ------ | ------------------------------------- | --------------------- | --------- |
-| `/api/update/me`                                         | _PUT_  | Update Student Info                   | `Bearer Access-Token` | Student   |
-| `/api/auth/admin/grading/grade/student/<int:student_id>` | _POST_ | Grade Students By Id                  | `Bearer Access-Token` | Admin     |
-| `/api/auth/admin/grading/grade/student`                  | _GET_  | Get Grades of Students by the student | `Bearer Access-Token` | Student   |
+| ROUTE                                                       | METHOD  | DESCRIPTION                           | AUTHORIZATION         | USER TYPE         |
+| ----------------------------------------------------------- | ------  | ------------------------------------- | --------------------- | ----------------- |
+| `/api/student/students`                                     | _GET_   | Get all students info                 | `Bearer Access-Token` | teachers or admin |
+| `/api/student/student/<int:student_id>`                     | _PATCH_ | Update Student Info by student id     | `Bearer Access-Token` | Student           |
+| `/api/student/student/<int:student_id>`                     | _DELETE_| Delete Student Info by student id     | `Bearer Access-Token` | teachers or admin |
+| `/api/student/students/<string:course_name>`                | _GET_   | Get Student Info by course name       | `Bearer Access-Token` | course teacher    |
+| `/api/student/student/<string:course_name>/<int:student_id>`| _PATCH_ | Grade Student course                  | `Bearer Access-Token` | course teacher    |
+| `/api/student/gpa/<int:student_id>`                         | _PATCH_ | Calclate Students gpa By student Id   | `Bearer Access-Token` | Admin             |
 
 <div style="margin-top:20px; margin-bottom:10px; font-size:20px; font-weight:bold;">Course EndPoint</div>
 
-| ROUTE                          | METHOD | DESCRIPTION             | AUTHORIZATION         | USER TYPE |
-| ------------------------------ | ------ | ----------------------- | --------------------- | --------- |
-| `/api/course/getall_course`    | _GET_  | Get all Course          | `Bearer Access-Token` | Any       |
-| `/api/course/getme/get_course` | _GET_  | Get course of a Student | `Bearer Access-Token` | Student   |
-| `/api/course/set_course`       | _POST_ | Register a Course       | `Bearer Access-Token` | Student   |
+| ROUTE                                     | METHOD | DESCRIPTION                   | AUTHORIZATION         | USER TYPE         |
+| ----------------------------------------- | ------ | ----------------------------  | --------------------- | ---------------   |
+| `/api/course/courses`                     | _POST_ | Register a Course             | `Bearer Access-Token` | Student           |
+| `/api/course/courses`                     | _GET_  | Get all course                | `Bearer Access-Token` | teachers or admin |
+| `/api/course/course/<int:student_id>`     | _GET_  | Get all course by student id  | `Bearer Access-Token` | student           |
+| `/api/course/course/<string:course_name>` | _GET_  | Get all course by course name | `Bearer Access-Token` | course teacher    |
+
