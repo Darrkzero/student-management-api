@@ -28,6 +28,12 @@ discreet_student_model = student_namespace.model('StudentId', {
     'password_hash': fields.String(required=True, description='The student password'),
 })
 
+edit_student_model = student_namespace.model('StudentEdit', {
+    'id': fields.Integer(required=True, description='The student ID'),
+    'name': fields.String(required=True, description='The student name'),
+    'email': fields.String(required=True, description='The student email'),
+})
+
 # Define the course model
 course_model = student_namespace.model('Student', {
     'id': fields.Integer(required=True, description='The student ID'),
@@ -67,7 +73,7 @@ class Students(Resource):
 @student_namespace.route('/student/<int:student_id>')
 class UpdateOrderStatus(Resource):
 
-    @student_namespace.expect(student_model)
+    @student_namespace.expect(edit_student_model)
     @student_namespace.marshal_with(student_model)
     @student_namespace.doc(description="""
             This endpoint is accessible to only the student with the student id. 
@@ -88,7 +94,6 @@ class UpdateOrderStatus(Resource):
             student = Student.query.get_or_404(student_id)
             student.name = data["name"]
             student.email = data["email"]
-            # student.password = data["password"]
             db.session.commit()
 
             return student, HTTPStatus.OK

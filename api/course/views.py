@@ -128,10 +128,9 @@ class OrderGetCreate(Resource):
             """)
     def get(self, course_name):
         """
-            Get specific all courses by course name
+            Get all courses by course name
         """
         email = get_jwt_identity()
-        # student_email = []
         teacher = User.query.filter_by(email=email).first()
         course = RegCourse.query.filter_by(course_name=course_name.upper()).first()
         courses = RegCourse.query.filter_by(course_name=course_name.upper()).all()
