@@ -6,6 +6,9 @@ It is built with Flask and Flask-restx and can be accessed through https://darrk
 
 <div></div>
 
+<h1>Note</h1>
+["MATHEMATICS","ENGLISH","SCIENCE","HISTORY","PHYSICAL EDUCATION","SOCIAL STUDIES","ART","COMPUTER SCIENCE"]
+Only the list of courses above can be registered.
 
 <h1>Prerequisites</h1>
 Python version: Python 3.10.10
