@@ -2,7 +2,7 @@
 # Student Management API
 
 <p style="font-size:20px;">The Student Management API is a REST API that allows teachers to grade their students, allows students to register their courses, allows admin calculate the students gpa and many other functions. 
-It's built with Flask and Flask-restx and can be accessed through https://darrkzero.pythonanywhere.com/, a PythonAnywhere-powered web app</p>
+It is built with Flask and Flask-restx and can be accessed through https://darrkzero.pythonanywhere.com/, a PythonAnywhere-powered web app</p>
 
 <div></div>
 
