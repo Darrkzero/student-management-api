@@ -76,7 +76,7 @@ python runserver.py
 <!-- License -->
 ## License
 
-Distributed under the MIT License. See <a href="https://github.com/Ze-Austin/ze-school/blob/main/LICENSE">LICENSE</a> for more information.
+Distributed under the MIT License. See <a href="https://github.com/Darrkzero/student-management-api/blob/main/LICENSE">LICENSE</a> for more information.
 
 
 ---
