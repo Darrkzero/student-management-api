@@ -21,6 +21,7 @@ Python version: Python 3.10.10
     <li>Navigate to the project directory.</li>
     <li>Create a virtual environment and activate it:</li>
     <li>Install the dependencies:</li>
+    <li>Copy <code>.env.example</code> to <code>.env</code> and set <code>SECRET_KEY</code> and <code>JWT_SECRET_KEY</code> to long random values:</li>
     <li>Run the application:</li>
 </ul>
 
@@ -31,6 +32,11 @@ source venv/bin/activate
 
 ```console
 pip install -r requirements.txt
+```
+
+```console
+cp .env.example .env
+python -c "import secrets; print(secrets.token_hex(32))"
 ```
 
 ```console
