@@ -55,33 +55,33 @@ python runserver.py
 
 | ROUTE                     | METHOD | DESCRIPTION                                     | AUTHORIZATION          | USER TYPE         |
 | ------------------------  | ------ | ----------------------------------------------- | ---------------------- | ---------         |
-| `/api/auth/signup/user`   | _POST_ | Creation of teachers or admin account           | `None`                 | teachers or admin |
-| `/api/auth/signup/student`| _POST_ | Creation of students account                    | `None`                 | students          |
-| `/api/auth/login/user`    | _POST_ | Creation of JWT Tokens for teachers or admin    | `None`                 | teachers or admin |
-| `/api/auth/login/student` | _POST_ | Creation of JWT Tokens for students             | `None`                 | Students          |
-| `/api/auth/refresh`       | _POST_ | Creation of Refresh Tokens for all account      | `Bearer Refresh-Token` | Any               |
-| `/api/auth/reset_password`| _PATCH_| Change password                                 | `Bearer Refresh-Token` | Any               |
+| `/auth/signup/user`   | _POST_ | Creation of teachers or admin account           | `None`                 | teachers or admin |
+| `/auth/signup/student`| _POST_ | Creation of students account                    | `None`                 | students          |
+| `/auth/login/user`    | _POST_ | Creation of JWT Tokens for teachers or admin    | `None`                 | teachers or admin |
+| `/auth/login/student` | _POST_ | Creation of JWT Tokens for students             | `None`                 | Students          |
+| `/auth/refresh`       | _POST_ | Creation of Refresh Tokens for all account      | `Bearer Refresh-Token` | Any               |
+| `/auth/reset_password`| _PATCH_| Change password                                 | `Bearer Refresh-Token` | Any               |
 
 
 <div style="margin-top:20px; margin-bottom:10px; font-size:20px; font-weight:bold;">Student EndPoint</div>
 
 | ROUTE                                                       | METHOD  | DESCRIPTION                           | AUTHORIZATION         | USER TYPE         |
 | ----------------------------------------------------------- | ------  | ------------------------------------- | --------------------- | ----------------- |
-| `/api/student/students`                                     | _GET_   | Get all students info                 | `Bearer Access-Token` | teachers or admin |
-| `/api/student/student/<int:student_id>`                     | _PATCH_ | Update Student Info by student id     | `Bearer Access-Token` | Student           |
-| `/api/student/student/<int:student_id>`                     | _DELETE_| Delete Student Info by student id     | `Bearer Access-Token` | teachers or admin |
-| `/api/student/students/<string:course_name>`                | _GET_   | Get Student Info by course name       | `Bearer Access-Token` | course teacher    |
-| `/api/student/student/<string:course_name>/<int:student_id>`| _PATCH_ | Grade Student course                  | `Bearer Access-Token` | course teacher    |
-| `/api/student/gpa/<int:student_id>`                         | _PATCH_ | Calclate Students gpa By student Id   | `Bearer Access-Token` | Admin             |
+| `/student/students`                                     | _GET_   | Get all students info                 | `Bearer Access-Token` | teachers or admin |
+| `/student/student/<int:student_id>`                     | _PATCH_ | Update Student Info by student id     | `Bearer Access-Token` | Student           |
+| `/student/student/<int:student_id>`                     | _DELETE_| Delete Student Info by student id     | `Bearer Access-Token` | teachers or admin |
+| `/student/students/<string:course_name>`                | _GET_   | Get Student Info by course name       | `Bearer Access-Token` | course teacher    |
+| `/student/student/<string:course_name>/<int:student_id>`| _PATCH_ | Grade Student course                  | `Bearer Access-Token` | course teacher    |
+| `/student/gpa/<int:student_id>`                         | _PATCH_ | Calclate Students gpa By student Id   | `Bearer Access-Token` | Admin             |
 
 <div style="margin-top:20px; margin-bottom:10px; font-size:20px; font-weight:bold;">Course EndPoint</div>
 
 | ROUTE                                     | METHOD | DESCRIPTION                   | AUTHORIZATION         | USER TYPE         |
 | ----------------------------------------- | ------ | ----------------------------  | --------------------- | ---------------   |
-| `/api/course/courses`                     | _POST_ | Register a Course             | `Bearer Access-Token` | Student           |
-| `/api/course/courses`                     | _GET_  | Get all course                | `Bearer Access-Token` | teachers or admin |
-| `/api/course/course/<int:student_id>`     | _GET_  | Get all course by student id  | `Bearer Access-Token` | student           |
-| `/api/course/course/<string:course_name>` | _GET_  | Get all course by course name | `Bearer Access-Token` | course teacher    |
+| `/course/courses`                     | _POST_ | Register a Course             | `Bearer Access-Token` | Student           |
+| `/course/courses`                     | _GET_  | Get all course                | `Bearer Access-Token` | teachers or admin |
+| `/course/course/<int:student_id>`     | _GET_  | Get all course by student id  | `Bearer Access-Token` | student           |
+| `/course/course/<string:course_name>` | _GET_  | Get all course by course name | `Bearer Access-Token` | course teacher    |
 
 <!-- License -->
 ## License
