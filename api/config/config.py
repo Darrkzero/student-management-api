@@ -13,6 +13,8 @@ class Config:
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=40)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(minutes=40)
     JWT_SECRET_KEY = config('JWT_SECRET_KEY')
+    # Let Flask-JWT-Extended's handlers answer auth errors (401) instead of Flask-RESTX turning them into 500s
+    PROPAGATE_EXCEPTIONS = True
 
 class DevConfig(Config):
     DEBUG = config('DEBUG', cast=bool)
